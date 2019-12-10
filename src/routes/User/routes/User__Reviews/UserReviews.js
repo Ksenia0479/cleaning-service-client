@@ -28,12 +28,12 @@ class UserReviews extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, isLoaded } = this.props;
     return (
       <div className="user__reviews">
         <MainHeader>Reviews</MainHeader>
         <InfiniteScrolling dataName="REVIEWS" paginatedDataKey="fetchedData">
-          <Reviews reviews={data} />
+          <Reviews reviews={data} isLoaded={isLoaded} />
         </InfiniteScrolling>
       </div>
     );
@@ -42,10 +42,13 @@ class UserReviews extends Component {
 
 const mapStateToProps = state => {
   const {
-    reviews: { paginatedData: { data = [] } = {} }
+    reviews: {
+      fetchedData: { isLoaded },
+      paginatedData: { data = [] } = {}
+    }
   } = state;
 
-  return { data };
+  return { data, isLoaded };
 };
 const mapDispatchToProps = { fetchReviews };
 

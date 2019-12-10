@@ -4,5 +4,9 @@ import React from "react";
 import "./spinner.css";
 
 export default () => {
-  return <div className="spinner"></div>;
+  return (
+    <div className="spinner__container">
+      <div className="spinner"></div>
+    </div>
+  );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // components
-import { Form, Button, Fieldset, Legend } from "components";
+import { Form, Button, Fieldset, Legend, Spinner } from "components";
 
 // fields
 import { ServicesFieldArray, RoomsFieldArray } from "fields";
@@ -23,7 +23,7 @@ class UserServices extends React.Component {
   };
 
   render() {
-    const { data, updateServices } = this.props;
+    const { data, isLoaded, updateServices } = this.props;
     return (
       <Form
         form="UserServicesEdit"
@@ -36,12 +36,12 @@ class UserServices extends React.Component {
       >
         <Fieldset>
           <Legend>Service types</Legend>
-          <ServicesFieldArray />
+          {isLoaded ? <ServicesFieldArray /> : <Spinner />}
         </Fieldset>
 
         <Fieldset>
           <Legend>Room types</Legend>
-          <RoomsFieldArray />
+          {isLoaded ? <RoomsFieldArray /> : <Spinner />}
         </Fieldset>
       </Form>
     );
@@ -50,11 +50,12 @@ class UserServices extends React.Component {
 
 const mapStateToProps = ({
   user: {
-    services: { data }
+    services: { data, isLoaded }
   }
 }) => {
   return {
-    data
+    data,
+    isLoaded
   };
 };
 

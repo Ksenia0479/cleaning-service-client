@@ -9,3 +9,7 @@
 .user__form ul .form__btn input {
   padding: 10px 0px;
 }
+
+.user__form .spinner__container {
+  margin-bottom: 40px;
+}
